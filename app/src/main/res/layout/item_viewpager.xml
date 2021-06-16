@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tvSliderTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="We Offer the Best Products for your Skin"
+        android:fontFamily="@font/montserrat"
+        android:textSize="28sp"
+        android:textAlignment="center"
+        android:textColor="@color/rv_item_new_title"
+        android:textStyle="bold"
+        android:layout_marginStart="32sp"
+        android:layout_marginEnd="32sp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        />
+
+    <ImageView
+        android:id="@+id/iVSliderImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image"
+        android:layout_gravity="center"
+        android:paddingTop="50dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:paddingBottom="40sp"
+        android:background="@drawable/shape_rounded_item"
+        />
+
+</LinearLayout>

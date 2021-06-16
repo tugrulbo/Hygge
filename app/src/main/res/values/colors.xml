@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <!-- Header Colors -->
+    <color name="header_bg">#F0FFFB</color>
+
+
+
+    <!-- Category Title Colors -->
+    <color name="category_yellow_bg">#1AFFC123</color>
+    <color name="category_yellow_title">#FFC123</color>
+    <color name="category_pink_bg">#1AFF66A0</color>
+    <color name="category_pink_title">#FF66A0</color>
+    <color name="category_blue_bg">#1A2975FF</color>
+    <color name="category_blue_title">#2975FF</color>
+    <color name="category_green_bg">#1A00CC96</color>
+    <color name="category_green_title">#00CC96</color>
+
+    <!-- RecyclerView Item Colors -->
+    <color name="rv_item_bg">#F6F7FB</color>
+    <color name="rv_item_secondary_title">#BDBDBD</color>
+    <color name="rv_item_new_title">#1A202C</color>
+
+
+    <!-- Size Part -->
+    <color name="size_bg">#F6F7FB</color>
+    <color name="size_bg_selected">#00CC96</color>
+
+
+
+
+
+</resources>

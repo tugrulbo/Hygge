@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Hygge</string>
+    <string name="items_title">Explore Our Products</string>
+    <string name="detail_state_tittle">Selling Fast</string>
+    <string name="detail_product_desc_title">Ürün Açıklaması</string>
+    <string name="detail_store_title">Hangi Mağaza Var?</string>
+    <string name="detail_add_title">Add to Cart</string>
+    <string name="popup_title">Sepete Eklendi</string>
+    <string name="popup_redirection_title">Anasayfaya Git</string>
+
+</resources>
