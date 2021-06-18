@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
-        <variable
-            name="viewModel"
-            type="com.tugrulbo.hygge.ui.home.HomeViewModel"/>
-    </data>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,7 +36,25 @@
         <!-- Header End -->
 
         <!-- Slider Start -->
-        <androidx.viewpager2.widget.ViewPager2
+
+        <TextView
+            android:id="@+id/tvSliderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="We Offer the Best Products for your Skin"
+            android:fontFamily="@font/montserrat"
+            android:textSize="28sp"
+            android:textAlignment="center"
+            android:textColor="@color/rv_item_new_title"
+            android:textStyle="bold"
+            android:layout_marginStart="32sp"
+            android:layout_marginEnd="32sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vpSlider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <!-- Slider End -->
@@ -50,7 +64,8 @@
             android:id="@+id/tvItemsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/items_title"
+            tools:text="Explore Our Products"
+            android:textAlignment="center"
             android:textStyle="bold"
             android:fontFamily="@font/montserrat"
             android:textSize="28sp"
