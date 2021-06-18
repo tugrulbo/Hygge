@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.HomeFragment"
+    android:id="@+id/homeFrameLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Header Start -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/header_bg">
+
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_logo"
+                android:layout_marginStart="138dp"
+                android:layout_marginEnd="81dp"
+                android:layout_marginTop="54dp"
+                android:layout_marginBottom="16dp"
+                />
+            <ImageView
+                android:id="@+id/ivShoppingCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_shopping_cart"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="61dp"
+                android:layout_marginEnd="24dp"/>
+        </LinearLayout>
+        <!-- Header End -->
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/scrollLinear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <!-- Slider Start -->
+                <TextView
+                    android:id="@+id/tvSliderTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="We Offer the Best Products for your Skin"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="28sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/rv_item_new_title"
+                    android:textStyle="bold"
+                    android:layout_marginStart="32sp"
+                    android:layout_marginEnd="32sp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/vpSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:clickable="false"/>
+                <!-- Slider End -->
+
+                <!-- RecyclerView Start -->
+                <TextView
+                    android:id="@+id/tvItemsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Explore Our Products"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="28sp"
+                    android:textColor="@color/rv_item_new_title"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="42dp"
+                    android:layout_marginTop="42dp"
+                    android:maxLines="2"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="42dp"/>
+                <!-- RecyclerView End -->
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

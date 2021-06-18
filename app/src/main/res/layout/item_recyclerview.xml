@@ -9,9 +9,10 @@
         android:id="@+id/ivProductImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/sample_bg"
+        tools:src="@drawable/sample_bg"
         android:background="@drawable/shape_rounded_item"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        android:padding="15dp"/>
 
     <TextView
         android:id="@+id/tvProductTitle"
@@ -22,7 +23,8 @@
         android:textStyle="bold"
         android:textSize="18sp"
         android:layout_gravity="center"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        android:maxLength="30"/>
 
     <include layout="@layout/category_title"/>
 

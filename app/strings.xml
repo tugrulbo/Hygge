@@ -7,8 +7,5 @@
     <string name="detail_add_title">Add to Cart</string>
     <string name="popup_title">Sepete Eklendi</string>
     <string name="popup_redirection_title">Anasayfaya Git</string>
-    <string name="not_found">Bulunamadı</string>
-    <string name="location_not_found">Lokasyon Bulunamadı</string>
-
 
 </resources>
