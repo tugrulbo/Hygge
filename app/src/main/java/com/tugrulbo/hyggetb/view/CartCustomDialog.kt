@@ -27,6 +27,7 @@ class CartCustomDialog(private var onClickInterface:OnClickInterface):DialogFrag
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
         btnPopupRedirection.setOnClickListener {
             onClickInterface.onClickConfirm(dialog!!)
+            dismiss()
         }
 
     }

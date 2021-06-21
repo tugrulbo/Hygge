@@ -1,8 +1,10 @@
 package com.tugrulbo.hyggetb.ui.fragments.adapters
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.telecom.Call
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,10 +18,11 @@ import com.tugrulbo.hyggetb.model.Product
 import com.tugrulbo.hyggetb.model.ProductDetail
 import com.tugrulbo.hyggetb.model.Products
 import com.tugrulbo.hyggetb.ui.fragments.DetailFragment
+import kotlinx.android.synthetic.main.fragment_detail.view.*
 import kotlinx.android.synthetic.main.item_viewpager.view.*
 import java.util.*
 
-class DetailImageSliderAdapter(private val context: Context?, private var sliders: ProductDetail?) : PagerAdapter() {
+class DetailImageSliderAdapter(private val context: Context?, private var sliders: List<String>) : PagerAdapter() {
 
     private var inflater: LayoutInflater? = null
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
@@ -29,23 +32,16 @@ class DetailImageSliderAdapter(private val context: Context?, private var slider
 
     override fun getCount(): Int {
 
-        return sliders!!.images.size
+        return sliders!!.size
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
 
         inflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater!!.inflate(R.layout.item_viewpager, null)
-        var imageUrl = sliders!!.images[position]
-        Picasso.get().load(imageUrl).into(view.iVSliderImage)
-
-        /*view.setOnClickListener(View.OnClickListener {
-            var id = sliders?.id
-            val intent = Intent(context!!, DetailFragment::class.java)
-            intent.putExtra("id",id)
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(context,intent,null)
-        })*/
+        var imageUrl = sliders!![position]
+        Log.d(TAG, "instantiateItem: ${sliders!![position]}")
+        Picasso.get().load(imageUrl).resize(600,800).into(view.iVSliderImage)
 
         val vp = container as ViewPager
         vp.addView(view, 0)

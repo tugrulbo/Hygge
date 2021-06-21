@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.HomeFragment"
-    android:id="@+id/homeFrameLayout">
+    android:id="@+id/homeFrameLayout"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <!-- Header Start -->
@@ -32,7 +33,7 @@
                 android:id="@+id/ivShoppingCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_shopping_cart"
+                tools:src="@drawable/ic_shopping_cart"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="61dp"
                 android:layout_marginEnd="24dp"/>
@@ -40,9 +41,10 @@
         <!-- Header End -->
 
 
-        <ScrollView
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:fillViewport="true">
 
             <LinearLayout
@@ -70,9 +72,9 @@
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/vpSlider"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:overScrollMode="never"
+                    android:layout_height="300dp"
                     android:clickable="false"/>
+
                 <!-- Slider End -->
 
                 <!-- RecyclerView Start -->
@@ -102,8 +104,8 @@
                     android:layout_marginBottom="42dp"/>
                 <!-- RecyclerView End -->
             </LinearLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

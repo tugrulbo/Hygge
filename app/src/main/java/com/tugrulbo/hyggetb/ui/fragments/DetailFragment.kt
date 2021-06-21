@@ -4,23 +4,23 @@ import android.app.Dialog
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.fragment.app.FragmentManager
-import com.airbnb.lottie.animation.content.Content
-import com.squareup.picasso.Picasso
+import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import com.tugrulbo.hyggetb.R
 import com.tugrulbo.hyggetb.model.ProductDetail
 import com.tugrulbo.hyggetb.network.NetworkHelper
 import com.tugrulbo.hyggetb.ui.fragments.adapters.DetailImageSliderAdapter
-import com.tugrulbo.hyggetb.ui.fragments.adapters.ImageSliderAdapter
+import com.tugrulbo.hyggetb.ui.fragments.adapters.SizesAdapter
 import com.tugrulbo.hyggetb.util.Communicator
 import com.tugrulbo.hyggetb.util.Constants
 import com.tugrulbo.hyggetb.util.Helper
@@ -33,8 +33,6 @@ import kotlinx.android.synthetic.main.fragment_map.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
-import kotlin.system.exitProcess
 
 
 class DetailFragment : Fragment() {
@@ -44,11 +42,6 @@ class DetailFragment : Fragment() {
     private var productDetail:ProductDetail?=null
     private var count =1
     private var comm :Communicator?=null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,12 +60,13 @@ class DetailFragment : Fragment() {
                     if(response.isSuccessful){
                         response.body()?.let {
                             productDetail = it
-                            holder()
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                holder()
+                            }
                             onClickEvents()
-                            //imageSliderImplementation()
+                            imageSliderImplementation(context!!,productDetail!!.images)
                         }
                         Log.d(TAG, "onResponse: $productDetail")
-
                     }
                }
                override fun onFailure(call: Call<ProductDetail>, t: Throwable) {
@@ -84,9 +78,9 @@ class DetailFragment : Fragment() {
             e.printStackTrace()
        }
     }
-    private fun imageSliderImplementation(){
-        val adapter = DetailImageSliderAdapter(context,productDetail)
-        vpSlider.adapter = adapter
+    private fun imageSliderImplementation(context: Context,sizes:List<String>){
+        val adapter = DetailImageSliderAdapter(context,sizes)
+        vpDetailImage.adapter = adapter
     }
 
     private fun holder(){
@@ -115,13 +109,39 @@ class DetailFragment : Fragment() {
            tvProductDesc.text = R.string.not_found.toString()
         }
 
+        productDetail?.sizes?.let {
+               val count =(productDetail?.sizes!!.size)/3
+            var counter = 0
+            var range=2 + counter
+               for (j in 1..count){
+                   val row = LinearLayout(context)
+                   row.layoutParams=LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                   for (i in counter..range){
+                       var btn = Button(context)
+                       btn.layoutParams=LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                       btn.text = productDetail?.sizes!![i]
+                       row.addView(btn)
+                       counter++
+                   }
+
+                   linearLDetailSizes.addView(row)
+               }
+
+        }
+
     }
+
+    /*private fun getProductSizes(){
+            rvDetailSizes.layoutManager = GridLayoutManager(requireContext(),3,GridLayoutManager.VERTICAL,false)
+            rvDetailSizes.adapter=SizesAdapter(productDetail!!.sizes)
+    }
+*/
 
     private fun onClickEvents(){
         ivCountBack.setOnClickListener {
             if (count>=1){
-                count--
                 tvCount.text = count.toString()
+                count--
             }
 
         }
@@ -138,13 +158,9 @@ class DetailFragment : Fragment() {
         }
 
         btnCart.setOnClickListener {
-                showCustomDialog()
+            showCustomDialog()
             ivShoppingCartDetail.setImageResource(R.drawable.ic_shopping_cart_filled)
-            var sharedPreferences = context?.getSharedPreferences(Constants.cartInfo,Context.MODE_PRIVATE)
-            var editor = sharedPreferences?.edit()
-            editor?.putString("product",productDetail?.id)
-            editor?.putBoolean("isEmpty",false)
-            editor?.commit()
+
 
         }
 
@@ -158,8 +174,13 @@ class DetailFragment : Fragment() {
     private fun showCustomDialog() {
         CartCustomDialog(object : OnClickInterface {
             override fun onClickConfirm(dialog: Dialog) {
+                var sharedPreferences = requireActivity().getSharedPreferences(Constants.cartInfo,Context.MODE_PRIVATE)
+                var editor = sharedPreferences.edit()
+                editor.putString("product",productDetail?.id.toString())
+                editor.putString(Constants.cartIsEmpty,"false")
+                editor.commit()
                 val fragmentTransaction = requireFragmentManager().beginTransaction()
-                fragmentTransaction.replace(R.id.detailFrameLayout, HomeFragment()).commit()
+                fragmentTransaction.replace(R.id.frameLayout, HomeFragment()).commit()
             }
 
         }).show(parentFragmentManager,"Custom Dialog")

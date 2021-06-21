@@ -1,6 +1,7 @@
 package com.tugrulbo.hyggetb.ui.fragments
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -20,7 +21,9 @@ import com.tugrulbo.hyggetb.ui.fragments.adapters.ImageSliderAdapter
 import com.tugrulbo.hyggetb.ui.fragments.adapters.ProductRecyclerViewAdapter
 import com.tugrulbo.hyggetb.ui.fragments.adapters.ProductRecyclerViewAdapter.*
 import com.tugrulbo.hyggetb.util.Communicator
+import com.tugrulbo.hyggetb.util.Constants
 import com.tugrulbo.hyggetb.util.Helper
+import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,26 +35,27 @@ class HomeFragment : Fragment(), OnListClickListener {
     private val networkHelper = NetworkHelper()
     private var productList:Products?=null
     private var productListAdapter:ProductRecyclerViewAdapter?=null
-    val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(context,2)
-    private var helper:Helper?=null
+    private val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(context,2)
     private lateinit var comm: Communicator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getAllData()
 
-        helper?.checkCart()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-
 
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        checkCart()
+    }
+
 
     private fun getAllData(){
         try {
@@ -106,6 +110,16 @@ class HomeFragment : Fragment(), OnListClickListener {
     private fun holder(){
         tvSliderTitle.text = productList?.mainTitle
         tvItemsTitle.text = productList?.subTitle
+    }
+
+    private fun checkCart(){
+        val sharedPreferences = requireContext().getSharedPreferences(Constants.cartInfo, Context.MODE_PRIVATE)
+        val isEmpty = sharedPreferences.getString(Constants.cartIsEmpty,"")
+        if(isEmpty=="false"){
+            ivShoppingCart.setImageResource(R.drawable.ic_shopping_cart_filled)
+        }else{
+            ivShoppingCart.setImageResource(R.drawable.ic_shopping_cart)
+        }
     }
 
 

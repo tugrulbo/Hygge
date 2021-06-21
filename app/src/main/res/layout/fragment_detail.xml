@@ -57,20 +57,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <!-- Product Image, Title -->
-                <ImageView
-                    android:id="@+id/ivProductImg"
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/vpDetailImage"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:src="@drawable/shopping"
-                    android:background="@drawable/shape_rounded_item"
-                    android:layout_marginStart="32sp"
-                    android:layout_marginEnd="32sp"
-                    android:layout_marginTop="32sp"
-                    android:layout_marginBottom="16dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:paddingStart="26dp"
-                    android:paddingEnd="20dp" />
+                    android:layout_height="300dp"/>
                 <TextView
                     android:id="@+id/tvState"
                     android:layout_width="wrap_content"
@@ -199,46 +189,18 @@
 
                 <!-- Sizes START -->
                 <LinearLayout
+                    android:id="@+id/linearLDetailSizes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_gravity="center"
                     android:layout_marginStart="63dp"
                     android:layout_marginEnd="63dp"
                     android:layout_marginBottom="48dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="S"
-                        android:textColor="@color/rv_item_new_title"
-                        android:textSize="20sp"
-                        android:paddingStart="30dp"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:paddingEnd="30dp"
-                        android:background="@drawable/shape_rounded_sizes"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="S"
-                        android:textColor="@color/rv_item_new_title"
-                        android:textSize="20sp"
-                        android:paddingStart="30dp"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:paddingEnd="30dp"
-                        android:background="@drawable/shape_rounded_sizes"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="S"
-                        android:textColor="@color/rv_item_new_title"
-                        android:textSize="20sp"
-                        android:paddingStart="30dp"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:paddingEnd="30dp"
-                        android:background="@drawable/shape_rounded_sizes"/>
+                  <androidx.recyclerview.widget.RecyclerView
+                      android:id="@+id/rvDetailSizes"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <!-- Sizes END -->
 
@@ -267,6 +229,7 @@
                     android:text="@string/detail_add_title"
                     android:textSize="16sp"
                     android:textAllCaps="false"
+                    android:enabled="false"
                     android:layout_gravity="center"
                     android:paddingStart="118dp"
                     android:paddingEnd="118dp"

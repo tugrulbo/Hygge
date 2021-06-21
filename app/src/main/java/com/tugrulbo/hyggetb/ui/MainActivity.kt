@@ -1,5 +1,6 @@
 package com.tugrulbo.hyggetb.ui
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.FragmentTransaction
@@ -8,8 +9,12 @@ import com.tugrulbo.hyggetb.ui.fragments.DetailFragment
 import com.tugrulbo.hyggetb.ui.fragments.HomeFragment
 import com.tugrulbo.hyggetb.ui.fragments.MapFragment
 import com.tugrulbo.hyggetb.util.Communicator
+import com.tugrulbo.hyggetb.util.Constants
+import com.tugrulbo.hyggetb.util.Helper
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class MainActivity : AppCompatActivity(), Communicator {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -17,6 +22,7 @@ class MainActivity : AppCompatActivity(), Communicator {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, HomeFragment()).commit()
+
     }
 
     override fun passDataCom(id: String) {
@@ -48,6 +54,7 @@ class MainActivity : AppCompatActivity(), Communicator {
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
         transaction.commit()
     }
+
 
 
 

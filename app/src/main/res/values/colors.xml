@@ -12,8 +12,6 @@
     <!-- Header Colors -->
     <color name="header_bg">#F0FFFB</color>
 
-
-
     <!-- Category Title Colors -->
     <color name="category_yellow_bg">#1AFFC123</color>
     <color name="category_yellow_title">#FFC123</color>
@@ -34,6 +32,7 @@
     <color name="size_bg">#F6F7FB</color>
     <color name="size_bg_selected">#00CC96</color>
 
+    <color name="btn_bg">#BDBDBD</color>
 
 
 
